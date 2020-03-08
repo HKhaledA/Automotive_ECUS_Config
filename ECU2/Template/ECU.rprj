@@ -1,0 +1,4 @@
+
+<Project Header="Project 'SPC560P50_Test_GenCC_WindRiver'" Path=".\ECU.rprj" Project="Yes" OutputFile="" ActiveApp="SPC560P50_Test_GenCC_WindRiver" sate="96" AsyncBuild="" >
+	<ApplicationBuild Header="SPC560P50_Test_GenCC_WindRiver" Extern=".\SPC560P50_Test_GenCC_WindRiver.rapp" Path=".\SPC560P50_Test_GenCC_WindRiver.rapp" OutputFile=".\output\SPC560P50_Test_GenCC_WindRiver.elf" sate="96" AsyncBuild="" />
+</Project>

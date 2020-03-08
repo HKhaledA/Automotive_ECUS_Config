@@ -1,0 +1,1 @@
+void InterruptInit(void);

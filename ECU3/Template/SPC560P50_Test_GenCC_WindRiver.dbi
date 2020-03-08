@@ -1,0 +1,17 @@
+[Application]
+ApplicationPath=J:\unit3\TemplateNew\output\SPC560P50_Test_GenCC_WindRiver.elf
+LoaderTool=PPC
+Target=PPC
+DebugTool=RLink_PPC
+Format=ELF
+CodeOffset=0x0
+ApplicationComponents=
+[Device]
+Name=SPC560P50_VLE
+[Debug]
+ToolName=RLink_PPC
+Explore=No
+Startup=1
+StartupSymb=main
+[SimFile]
+path=C:\Program Files (x86)\Raisonance\Ride\sim\PPC\SPC560P50_VLE.sim

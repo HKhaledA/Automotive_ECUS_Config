@@ -1,0 +1,85 @@
+
+<ApplicationBuild Header="SPC560P50_Test_GenCC_WindRiver" Extern=".\SPC560P50_Test_GenCC_WindRiver.rapp" Path=".\SPC560P50_Test_GenCC_WindRiver.rapp" OutputFile=".\output\SPC560P50_Test_GenCC_WindRiver.elf" sate="96" AsyncBuild="" >
+	<NodeText Path=".\src\readme.txt" Header="readme.txt" OutputFile="" sate="0" Marker="-1" AsyncBuild="" />
+	<NodeC Path=".\src\romcopy.c" Header="romcopy.c" OutputFile=".\output\romcopy.o" sate="0" Marker="-1" AsyncBuild="" />
+	<NodeC Path=".\src\bam_init.c" Header="bam_init.c" OutputFile=".\output\bam_init.o" sate="0" Marker="-1" AsyncBuild="" />
+	<NodeASM Path=".\src\crt0.s" Header="crt0.s" OutputFile=".\output\crt0.o" sate="0" Marker="-1" AsyncBuild="" />
+	<Options>
+		<Config Header="Standard" >
+			<Set Header="ApplicationBuild" >
+				<Section Header="General" >
+					<Property Header="TargetFamily" Value="PPC" />
+																																																																																																																																																																																																				
+				</Section>
+				<Section Header="Directories" >
+					<Property Header="OutDir" Value="$(ApplicationDir)\output" Removable="1" />
+					<Property Header="ListDir" Value="$(ApplicationDir)\output" Removable="1" />
+																																																																																																																																														
+				</Section>
+																																																																																																														
+			</Set>
+			<Set Header="Target" >
+				<Section Header="ProcessorPPC" >
+					<Property Header="Processor" Value="SPC560P50_VLE" />
+																																																																																																																																																																																																				
+				</Section>
+				<Section Header="ToolSetPPC" >
+					<Property Header="BuildToolSetPPC" Value="GENERIC\GENERIC.config" />
+																																																																																																																																																																																																				
+				</Section>
+																																																																																																																																																								
+			</Set>
+			<Set Header="COMPILER" >
+				<Section Header="Comp" >
+					<Property Header="Compile" Value="dcc -tPPCVLEEN:simple -c -D__PPC_VLE__ -g  -I .\src -Xdebug-local-cie -Wa,-l -o &quot;$(NodeC.Build.OutputFile)&quot; $(CmdInput)" />
+																																																																																																																																					
+				</Section>
+																																																																																																							
+			</Set>
+			<Set Header="ASSEMBLER" >
+				<Section Header="Assemb" >
+					<Property Header="Assemble" Value=" das -tPPCVLEEN:simple -g -o &quot;$(NodeASM.Build.OutputFile)&quot; $(CmdInput)" />
+																																																																																																																																					
+				</Section>
+																																																																																																							
+			</Set>
+			<Set Header="LINKER" >
+				<Section Header="Ln" >
+					<Property Header="Link" Value="rexrdr.exe &quot;$(Build.ListingFile)&quot; 1 dld -tPPC5534VEN:simple .\src\default560P.dld -m6 -lc -limpl $(CmdInput) -o &quot;$(Build.OutputFile)&quot;" />
+																																																																																																																																																																																		
+				</Section>
+				<Section Header="Options" >
+					<Property Header="RunA" Value="Yes" Removable="1" />
+					<Property Header="CommandA" Value="ddump  -Rv &quot;$(Build.OutputFile)&quot; -o &quot;$(LINKER.General.NoExtOutputFile).s19&quot;" Removable="1" />
+																																																																																																																																																																																		
+				</Section>
+																																																																																																																																										
+			</Set>
+																																																																						
+		</Config>
+																																										
+	</Options>
+	<NodeC Path=".\src\main.c" Header="main.c" Marker="0" OutputFile=".\output\main.o" sate="2" AsyncBuild="" >
+		<Options>
+			<Config Header="Standard" >
+				<Set Header="COMPILER" >
+					<Section Header="Comp" >
+						<Property Header="Compile" Value="dcc -tPPCVLEEN:simple -c -D__PPC_VLE__ -g  -I .\src -Xdebug-local-cie -Wa,-l -o &quot;$(NodeC.Build.OutputFile)&quot; $(CmdInput) -Xkeywords=0x10" />
+																																									
+					</Section>
+																																	
+				</Set>
+																					
+			</Config>
+															
+		</Options>
+																														
+	</NodeC>
+	<NodeC Path=".\src\siu.c" Header="siu.c" Marker="-1" AsyncBuild="" OutputFile=".\output\siu.o" sate="0" />
+	<NodeC Path=".\src\can.c" Header="can.c" Marker="-1" AsyncBuild="" OutputFile=".\output\can.o" sate="0" />
+	<NodeC Path=".\src\me.c" Header="me.c" Marker="-1" AsyncBuild="" OutputFile=".\output\me.o" sate="0" />
+	<NodeC Path=".\src\pit.c" Header="pit.c" Marker="-1" AsyncBuild="" OutputFile=".\output\pit.o" sate="0" />
+	<NodeC Path=".\src\adc.c" Header="adc.c" Marker="-1" AsyncBuild="" OutputFile=".\output\adc.o" sate="0" />
+	<NodeC Path=".\src\interrupt.c" Header="interrupt.c" Marker="-1" AsyncBuild="" OutputFile=".\output\interrupt.o" sate="0" />
+	<NodeC Path=".\src\init.c" Header="init.c" Marker="-1" AsyncBuild="" OutputFile=".\output\init.o" sate="0" />
+</ApplicationBuild>

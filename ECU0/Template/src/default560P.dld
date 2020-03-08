@@ -1,0 +1,152 @@
+/*
+ *######################################################################
+ *                                RAppIDJDP
+ *           Rapid Application Initialization and Documentation Tool
+ *                         ST MicroElectronics.
+ *                (c) Copyright 2004-2008 ST MicroElectronics.
+ *                         ALL RIGHTS RESERVED.
+ *                        SPC560P50 Configuration Tool 
+ *######################################################################
+ *
+ * Project Name           : Pictus_Flash
+ *
+ * Project File           : Pictus_Flash.rsp
+ *
+ * Revision Number        : 1.0
+ *
+ * Tool Version           : 1.1.0.3
+ *
+ * file                   : default560P.dld
+ *
+ * Target Compiler        : Diab
+ *
+ * Target Part            : SPC560P50
+ *
+ * Part Errata Fixes      : none
+ *
+ * Project Last Save Date : 16-Sep-2009 09:44:44
+ *
+ * Created on Date        : 16-Sep-2009 09:44:47
+ *
+ * Brief Description      : 
+ *
+ ******************************************************************************** 
+ *
+ * Detail Description     : 
+ *
+ ******************************************************************************** 
+ *
+ *######################################################################
+*/
+
+ 
+ 
+MEMORY
+{
+    rcw:                            org=0x00000000, len=0x00000008
+    init:                           org=0x00000020, len=0x00000FE0
+    exception_handlers:             org=0x00001000, len=0x00001000
+    int_flash:                      org=0x00002000, len=0x00010000
+    vector_table:                   org=0x00012000, len=0x00001000
+    int_sram:                       org=0x40000000, len=0x00009800
+    stack_ram:                      org=0x40009800, len=0x00000800
+}
+
+
+SECTIONS
+{
+
+
+
+
+
+    GROUP : { 
+    
+        .rcw  LOAD (0x0): {   }} >rcw
+
+
+
+    GROUP : { 
+    
+        .init : {  }
+        .init_vle  LOAD (0x20): { 
+            *(.init)
+            *(.init_vle)
+          }} >init
+
+
+
+    GROUP : { 
+    
+        .exec_vect  LOAD (0x1000): {   }
+        .exec_vect_Vle  LOAD (0x1000): {   }} >exception_handlers
+
+
+
+    GROUP : { 
+    
+        __argv=.;
+
+        __env=.;
+
+        .text : {  }
+        .text_vle : { 
+            *(.text_vle)
+            *(.text)
+         }
+        .rodata (CONST): { 
+            *(.rdata)
+            *(.rodata)
+         }
+        .ctors  ALIGN (0x4): { *(.ctors) }
+        .dtors  ALIGN (0x4): { *(.dtors) }
+        .sdata2 : {  }
+        .sbss2 : {  }} >int_flash
+
+
+
+    GROUP : { 
+    
+        .vects  LOAD (0x12000): {    }} >vector_table
+
+
+
+    GROUP : { 
+    
+        __DATA_ROM =ADDR(.sbss2) + SIZEOF(.sbss2);
+
+        __DATA_RAM=.;
+
+        .data  LOAD (__DATA_ROM): { *(.data)  }
+        .sdata  LOAD (ADDR(.sdata) - ADDR(.data) + __DATA_ROM): { *(.sdata)  }
+        __DATA_END=.;
+
+        __BSS_START=.;
+
+        .sbss : { *(.sbss) }
+        .bss : { *(.bss) }
+        .tibss : {  }
+        __BSS_END=.;
+
+        .tidata : {  }
+        __HEAP_START =.;
+} >int_sram
+
+}
+
+
+
+
+
+__SP_INIT=ADDR(stack_ram)+SIZEOF(stack_ram);
+__SP_END=ADDR(stack_ram);
+__HEAP_END=__SP_END;
+___HEAP_START=__HEAP_START;
+___HEAP_END=__HEAP_END;
+___SP_INIT=__SP_INIT;
+___SP_END=__SP_END;
+___DATA_ROM=__DATA_ROM;
+___DATA_RAM=__DATA_RAM;
+___DATA_END=__DATA_END;
+___BSS_START=__BSS_START;
+___BSS_END=__BSS_END;
